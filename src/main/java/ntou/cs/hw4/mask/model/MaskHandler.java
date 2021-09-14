@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 @Component
 public class MaskHandler {
 	private static final String dataURL = "https://data.nhi.gov.tw/Datasets/Download.ashx?rid=A21030000I-D50001-001&l=https://data.nhi.gov.tw/resource/mask/maskdata.csv";
-	private static final String fileName = "maskdata.csv"; // if the link is unavailable
+	private static final String fileName = "C:\\Users\\User\\Desktop\\maskdata.csv"; // if the link is unavailable
 
 	private List<Pharmacy> pharmacyList;
 
@@ -60,7 +60,7 @@ public class MaskHandler {
 
 	public String produceStringFromFile(String fileName) throws IOException {
 		InputStream is = new FileInputStream(fileName);
-		BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+		BufferedReader buf = new BufferedReader(new InputStreamReader(is,StandardCharsets.UTF_8));
 		String line = buf.readLine();
 		StringBuilder sb = new StringBuilder();
 		while (line != null) {
@@ -99,7 +99,7 @@ public class MaskHandler {
 			jsonGenerator.writeEndArray();
 		}
 
-		return output.toString();
+		return output.toString("UTF-8");
 	}
 
 	public List<Pharmacy> convertToObjects(String jsonData) {

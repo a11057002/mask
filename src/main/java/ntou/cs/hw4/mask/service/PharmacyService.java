@@ -17,19 +17,18 @@ import ntou.cs.hw4.mask.repository.NoteRepository;
 @Service
 public class PharmacyService {
 	
-	
-	@Autowired
 	private MaskHandler handler;
-	@Autowired
 	private NoteRepository repository;
 	
-	public PharmacyService(MaskHandler handler) {
+	@Autowired
+	public PharmacyService(MaskHandler handler,NoteRepository repository) {
 		try {
 			handler.initialize();
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 		this.handler = handler;
+		this.repository = repository;
 		
 	}
 	
